@@ -39,7 +39,7 @@ const GlobalStyle = createGlobalStyle`
         display: block;
     }
     body {
-        line-height: 1;
+        line-height: 1.1rem;
         font-family: 'Poppins', sans-serif;
     }
     ol, ul {
