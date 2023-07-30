@@ -40,6 +40,7 @@ const GlobalStyle = createGlobalStyle`
     }
     body {
         line-height: 1;
+        font-family: 'Poppins', sans-serif;
     }
     ol, ul {
         list-style: none;

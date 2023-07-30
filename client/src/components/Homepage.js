@@ -3,39 +3,40 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const Homepage = () => {
-    const [ menu, setMenu ] = useState(null);
+  const [menu, setMenu] = useState(null);
 
-    useEffect(() => {
-        fetch("/menu")
-        .then((res) => res.json())
-        .then((data) => setMenu(data.data))
-        .catch((error) => console.log(error))
-    }, [])
-    return (
-        <>
-        <H1>Pizza Time!</H1>
-        {
-            !menu 
-            ? <H2>Loading ...</H2> 
-            : <Container> {
-                menu.map((pizza) => {
-                    return (
-                        <Card key={`menu${pizza.id}`} to={`/pizza/${pizza.id}`}>
-                            <Thumbnail><Image src={pizza.src} alt={pizza.name}></Image></Thumbnail>
-                            <Content>
-                                <h3>{pizza.name}</h3>
-                                <p>{pizza.description}</p>
-                                <p><Span>Toppings: </Span>{pizza.toppings}</p>
-                                <p>{`Starting at ${pizza.price["Small"]}`}</p>
-                            </Content>
-                        </Card>
-                    )
-                })
-                }
-            </Container>
-        }
-        </>
-    )
+  useEffect(() => {
+    fetch('/menu')
+      .then((res) => res.json())
+      .then((data) => setMenu(data.data))
+      .catch((error) => console.log(error))
+  }, [])
+
+  return (
+    <>
+      <H1>Pizza Time!</H1>
+      {
+        !menu
+          ? <H2>Loading ...</H2>
+          : <Container> {
+            menu.map((pizza) => {
+              return (
+                <Card key={`menu${pizza.id}`} to={`/pizza/${pizza.id}`}>
+                  <Thumbnail><Image src={pizza.src} alt={pizza.name}></Image></Thumbnail>
+                  <Content>
+                    <h3>{pizza.name}</h3>
+                    <p>{pizza.description}</p>
+                    <p><Span>Toppings: </Span>{pizza.toppings}</p>
+                    <p>{`Starting at ${pizza.price["Small"]}`}</p>
+                  </Content>
+                </Card>
+              )
+            })
+          }
+          </Container>
+      }
+    </>
+  )
 }
 
 const H1 = styled.h1`
@@ -67,7 +68,7 @@ const Card = styled(Link)`
     text-decoration: none;
     transition: all 200ms ease-in-out;
     &:hover {
-        transform: translate(0, -3px);
+        transform: translateY(-2px) translateX(-2px);
         box-shadow: 4px 4px 12px gainsboro;
     }
 
