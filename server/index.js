@@ -14,24 +14,19 @@ const {
 } = require("./handlers");
 
 express()
-
     .use(express.json())
     .use(helmet())
-    .use(morgan("tiny"))
+    .use(morgan('dev'))
 
     .get("/menu", getPizzas)
     .get("/menu/:pizzaId", getPizza)
     .get("/orders", getOrders)
     .get("/orders/:orderId", getOrder)
-
     .post("/orders", createOrder)
-
     .patch("/orders/:orderId", updateOrder)
-
     .put("/orders/:orderId", rewriteOrder)
-
     .delete("/orders/:orderId", deleteOrder)
 
     .listen(8000, () => {
-        console.log(`Server listening on port ${8000}`)
+        console.log(`Server listening on port ${8000} - http://localhost:8000/`)
     });
