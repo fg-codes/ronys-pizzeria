@@ -6,24 +6,24 @@ export const Confirm = () => {
   const { orderId } = useParams();
   const [order, setOrder] = useState(null);
   const [pizza, setPizza] = useState(null);
-  const [time, setTime] = useState(null);                   // we need this to calculate order time + 30 mins
+  const [time, setTime] = useState(null);
 
   useEffect(() => {
-    fetch(`/orders/${orderId}`)                             // on mount, GET all the orders in order state
+    fetch(`/orders/${orderId}`)
       .then((res) => res.json())
       .then((data) => setOrder(data.data))
       .catch((error) => console.log(error.message))
   }, [])
 
   useEffect(() => {
-    fetch("/menu")                                      // on order change, GET the menu
+    fetch("/menu")
       .then(res => res.json())
       .then(data => {
-        let date = new Date();                          // add a temp variable as a new Date
-        date.setMinutes(date.getMinutes() + 30);          // add 30 mins to the minutes
-        setTime(date.toLocaleTimeString())              // change our time state
+        let date = new Date();
+        date.setMinutes(date.getMinutes() + 30)
+        setTime(date.toLocaleTimeString())
         data.data.forEach(e => {
-          e.id === order.pizza && (setPizza(e))       // we map throught our menu to find the pizza matching the choosen topping 
+          e.id === order.pizza && (setPizza(e))
         })
       })
       .catch(error => console.log(error.message))
@@ -40,7 +40,7 @@ export const Confirm = () => {
           <B>Address:</B><P> {order.address}</P>
           <B>Pizza:</B><P>{pizza.name} ({order.price})</P>
           <B>TOTAL:</B><P> {pizza.price[order.price]}</P>
-          <I>Pizza will arrive before {time} or it's free!</I>        {/* TO DO: add date and time of order to the order obj before POST */}
+          <I>Pizza will arrive before {time} or it's free!</I>
         </Wrapper>}
     </>
   )
