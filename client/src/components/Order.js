@@ -8,16 +8,18 @@ export const Order = () => {
   const [price, setPrice] = useState(null);
   const navigate = useNavigate();
 
+  // Get the menu on mount
   useEffect(() => {
-    fetch("/menu")                                  // On mount, GET the menu
+    fetch("/menu")
       .then((res) => res.json())
       .then((data) => setPizza(data.data))
       .catch((error) => console.log(error))
   }, []);
 
+  // POST then redirect the client to /confirm/:orderId
   const handleSubmit = (event) => {
-    event.preventDefault();                         // no refresh
-    fetch("/orders", {                              // On submit button click, POST the order
+    event.preventDefault();
+    fetch("/orders", {
       method: "POST",
       headers: {
         "Accept": "application/json",
@@ -26,19 +28,22 @@ export const Order = () => {
       body: JSON.stringify({ order: formData })
     })
       .then((res) => res.json())
-      .then((data) => navigate(`/confirm/${data.data.id}`))       // then send the client to the order confirmation page
+      .then((data) => navigate(`/confirm/${data.data.id}`))
       .catch((error) => console.log(error.message))
   }
 
-  const handleChange = (event) => {                               // when something changes in the form, we update our state
+  // when something changes in the form, we update our state
+  const handleChange = (event) => {
     setFormData({ ...formData, [event.target.id]: event.target.value });
   }
 
-  const selectChange = (target) => {                                      // when a topping is selected...
+  // when a topping is selected, we update the formData with this topping
+  // and set the prices for this specific item / display the prices
+  const selectChange = (target) => {
     pizza.forEach((pizza) => {
       if (pizza.id === target.value) {
-        setFormData({ ...formData, [target.id]: target.value });      // ...we add this choice to our form and...
-        setPrice(pizza.price);                                      // ...we add the prices linked to this exact topping
+        setFormData({ ...formData, [target.id]: target.value });
+        setPrice(pizza.price);
       }
     })
   }
@@ -50,7 +55,7 @@ export const Order = () => {
         : <Form onSubmit={handleSubmit}>
 
           <Label>First Name: <InputField
-            placeholder="John" name="fname" id="fname"
+            placeholder="John" name="fname" id="fname" autoFocus
             onChange={handleChange}></InputField></Label>
 
           <Label>Last Name: <InputField
@@ -61,7 +66,7 @@ export const Order = () => {
             placeholder="123 Street" name="address" id="address"
             onChange={handleChange}></InputField></Label>
 
-          <Label>E-mail: <InputField type="email"
+          <Label>Email: <InputField type="email"
             placeholder="example@email.com" name="email" id="email"
             onChange={handleChange}></InputField></Label>
 
@@ -69,7 +74,8 @@ export const Order = () => {
             placeholder="Phone number" name="phone" id="phone"
             onChange={handleChange}></InputField></Label>
 
-          <Label>Pizza: <Select name="selectPizza" id="pizza"                 // Dropdown menu of toppings section
+          {/* Dropdown menu of toppings section */}
+          <Label>Pizza: <Select name="selectPizza" id="pizza"
             onChange={(event) => selectChange(event.target)}>
             <Option value="">Pick your pizza</Option>
             {
@@ -81,21 +87,20 @@ export const Order = () => {
           </Select></Label>
 
           {
-            !price
-              ? <></>                                                     // Radio buttons of prices/pizza size section
-              : <PriceWrapper>
-                {Object.keys(price).map((size, i) => {
-                  return (
-                    <RadioLabel key={`pizzaPrice${i}`}>
-                      <input type="radio" name="size"
-                        value={size} id="price" onClick={handleChange}
-                      />{size}: {price[size]}
-                    </RadioLabel>
-                  )
-                })}
-              </PriceWrapper>
+            // Radio buttons of prices/pizza size selection section
+            price && <PriceWrapper>
+              {Object.keys(price).map((size, i) => {
+                return (
+                  <RadioLabel key={`pizzaPrice${i}`}>
+                    <input type="radio" name="size"
+                      value={size} id="price" onClick={handleChange}
+                    />{size}: {price[size]}
+                  </RadioLabel>
+                )
+              })}
+            </PriceWrapper>
           }
-          <Button type="submit">Gimme my pidZaA!!1</Button>
+          <Button type="submit">Give me my pizza!!</Button>
         </Form>}
     </>
   )
@@ -107,11 +112,12 @@ const H2 = styled.h2`
 
 const Form = styled.form`
   text-align: center;
-  padding: 20px;
+  padding: 30px;
   background-color: wheat;
-  border-radius: 20px;
+  border-radius: 10px;
   width: fit-content;
   margin: 70px auto;
+  box-shadow: 5px 5px 12px lightgray;
 `;
 const Label = styled.label`
   margin: 10px;
@@ -121,22 +127,29 @@ const Label = styled.label`
   align-items: center;
 `;
 const InputField = styled.input`
-  padding: 5px;
+  padding: 10px;
   border-radius: 5px;
-  border: 1px solid black;
-  width: 200px;
+  border: none;
+  width: 240px;
   text-align: center;
+  &:focus {
+    outline: 1px solid gray;
+  }
   &::placeholder {
     text-align: center;
+    font-style: italic;
     }
 `;
 const Select = styled.select`
-  width: 200px;
-  padding: 5px;
+  width: 240px;
+  padding: 10px;
   box-sizing: content-box;
   border-radius: 5px;
   color: black;
-  border: 1px solid black;
+  border: none;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 const Option = styled.option`
   text-align: center;
