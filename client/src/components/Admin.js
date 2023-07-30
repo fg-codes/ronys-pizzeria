@@ -3,47 +3,65 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const Admin = () => {
-  const [ orders, setOrders ] = useState(null)
+  const [orders, setOrders] = useState(null)
 
   useEffect(() => {
-    fetch("/orders")                                // on mount, GET all the orders
-    .then(res => res.json())
-    .then(data => setOrders(data.data))             // load orders in orders state
-    .catch(error => console.log(error.message))
+    fetch("/orders")
+      .then(res => res.json())
+      .then(data => setOrders(data.data))
+      .catch(error => console.log(error.message))
   }, [])
 
   return (
     <>
-    {!orders
-    ? <H2>Loading...</H2>
-    : <div>
-    {orders.length > 0 ? <H2>Orders</H2> : <H2>No orders yet :(</H2>}     
-    {orders.map((order) => {
-      return (
-        <OrderLink key={`order${order.id}`} to={`/order/${order.id}`}> 
-          {order.fname} {order.lname} - {order.pizza} - {order.id}
-        </OrderLink>
-      )})}
-    </div>}
+      {!orders
+        ? <H2>Loading...</H2>
+        : <div>
+          {orders.length > 0 ? <H2>Orders</H2> : <H2>No orders yet :(</H2>}
+          {orders.map((order) => {
+            return (
+              <OrderLink key={`order${order.id}`} to={`/order/${order.id}`}>
+                <P>
+                  <span>Order No: <B>{order.id}</B></span>
+                  <span>Name: <B>{order.fname} {order.lname}</B></span>
+                  <span>Pizza: <B>{order.pizza}</B></span>
+                </P>
+              </OrderLink>
+            )
+          })}
+        </div>}
     </>
   )
 }
 
-const H2 = styled.h2`
-    margin-top: 70px;
-    text-align: center;
+const B = styled(Span)`
+  font-weight: 600;
+`;
+
+const P = styled.p`
+  display: flex;
+  margin: 0 auto;
+  gap: 20px;
+  width: fit-content;
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: black;
+  transition: all 200ms ease;
+  border: 1px solid transparent;
+  &:hover {
+    background-color: lightyellow;
+    border: 1px solid lightgray;
+  }
 `;
 
 const OrderLink = styled(Link)`
-  text-align: center;
-  margin: 20px auto;
   display: block;
-  text-decoration: none;
-  width: fit-content;
   padding: 5px 10px;
-  border-radius: 5px;
-  transition: all 200ms ease;
-  &:hover {
-    background-color: LemonChiffon;
-}
+  text-align: center;
+  text-decoration: none;
+`;
+
+const H2 = styled.h2`
+  text-align: center;
+  margin: 60px 0px;
 `;
