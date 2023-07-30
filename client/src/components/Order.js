@@ -147,6 +147,9 @@ const Select = styled.select`
   border-radius: 5px;
   color: black;
   border: none;
+  &:focus {
+    outline: 1px solid gray;
+  }
   &:hover {
     cursor: pointer;
   }

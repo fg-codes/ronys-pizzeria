@@ -34,7 +34,7 @@ export const Admin = () => {
   )
 }
 
-const B = styled(Span)`
+const B = styled.span`
   font-weight: 600;
 `;
 
