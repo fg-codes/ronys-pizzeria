@@ -5,7 +5,7 @@ import { Header } from "./Header.js";
 import { Homepage } from "./Homepage";
 import { PizzaDetails } from "./PizzaDetails.js"
 import { Order } from "./Order.js";
-import { Confirm } from "./Confirméjs";
+import { Confirm } from "./Confirm.js";
 import { Admin } from "./Admin.js";
 import { OrderDetails } from "./OrderDetails.js";
 
