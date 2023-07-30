@@ -55,7 +55,7 @@ const H4 = styled.h4`
 const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
-  max-width: 80%;
+  max-width: 65%;
   height: 350px;
   margin: 0px auto;
   border: 2px solid gray;
@@ -90,6 +90,8 @@ const ButtonDiv = styled.div`
 `;
 const Button = styled(Link)`
   padding: 15px 30px;
+  color: black;
+  font-weight: 600;
   border: none;
   border-radius: 5px;
   background-color: LemonChiffon;

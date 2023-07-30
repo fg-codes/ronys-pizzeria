@@ -61,7 +61,6 @@ const Card = styled(Link)`
     width: 48%;
     height: 250px;
     margin: 0px auto 20px;
-    border: 2px solid peachpuff;
     border-radius: 20px;
     overflow: hidden;
     color: black;
