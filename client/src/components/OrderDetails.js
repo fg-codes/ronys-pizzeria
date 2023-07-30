@@ -12,27 +12,6 @@ export const OrderDetails = () => {
   const [ deleteConfirmation, setDeleteConfirmation ] = useState(false)     // Toggle between Delete btn and Delete Confirmation btns.
   const navigate = useNavigate();
 
-  /*
-  Exercise 5 - Super Secret Admin Page
-  To find the right price list, I had to match the pizza name from the Order with the pizzas in the menu.
-  Each of them required a fetch. The thing is, with the useState delay, I could not compare both without
-  having a null value/error.
-  
-  I tried to play with the dependecies: no success.
-  I tried to nest my 2nd fetch in the first: not the expected behaviour but works fine (and allows me to use a temporary variable)
-  I know I could have fetch only once and use Context to pass the data to all my components but wasn't
-  confortable with this yet and did not want to risk to mess up my code.
-  
-  This is why I had to set a temporary variable (called orderPizzaType)
-  I think this is correct the way I did but I would like to know if there is something
-  I could have done to optimise my code besides using Context? Thanks!
-
-
-  By the way, Exercise 8 (stretch) asks us to add a 3rd button to rewrite the full order.
-  I prefered to use the "Update button" to do all modifications we want. I think this is more efficient
-  and userfriendly. I understand that it makes us practice but making UX optimized design is a +++
-  */
-
   useEffect(() => { 
     fetch(`/orders/${orderId}`)                     // on mount, we GET the specific order
     .then(res => res.json())
