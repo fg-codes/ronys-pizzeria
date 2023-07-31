@@ -52,7 +52,7 @@ const Container = styled.div`
     display: flex;
     flex-wrap: wrap;
     max-width: 80%;
-    margin: 0px auto;
+    margin: 0px auto 50px;
 `;
 
 const Card = styled(Link)`
