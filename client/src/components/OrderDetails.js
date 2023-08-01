@@ -136,8 +136,8 @@ export const OrderDetails = () => {
   )
 }
 
-const H2 = styled.h2`
-  margin-top: 70px;
+const H2 = styled.h3`
+  margin-top: 50px;
   text-align: center;
 `;
 
@@ -147,7 +147,7 @@ const Form = styled.form`
   background-color: wheat;
   border-radius: 20px;
   width: fit-content;
-  margin: 70px auto 100px;
+  margin: 30px auto 100px;
 `;
 
 const Label = styled.label`

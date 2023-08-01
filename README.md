@@ -3,7 +3,7 @@
 
 ## 🟢 About
 
-The primary focus of this frontend project was to gain hands-on experience in fetching and utilizing various React hooks to manipulate data. The backend was purely coded to work flawlessly. Although, it's not directly connected to any database. While the design wasn't my top priority, it still manages to be effective and serves its purpose splendidly. 
+The primary focus of this frontend project was to gain hands-on experience in fetching and utilizing various React hooks to manipulate data. The backend was simply coded to work flawlessly. Although, it's not directly connected to any database. While the design wasn't my top priority, it still manages to be effective and serves its purpose splendidly. 
 
 ![mvp demo](./mvp.png)
 
@@ -16,7 +16,22 @@ The primary focus of this frontend project was to gain hands-on experience in fe
 
 ## 🟢 Demo
 ![demo1](./demo1.gif)
+\
+\
+\
+\
 ![demo2](./demo2.gif)
+\
+\
+\
+\
+![demo3](./demo3.gif)
+\
+\
+\
+\
+![demo4](./demo4.gif)
+
 
 ## 🟢 Project Setup
 #### Server side: 
