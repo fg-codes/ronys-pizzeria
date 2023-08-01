@@ -17,18 +17,9 @@ The primary focus of this frontend project was to gain hands-on experience in fe
 ## 🟢 Demo
 ![demo1](./demo1.gif)
 \
-\
-\
-\
 ![demo2](./demo2.gif)
 \
-\
-\
-\
 ![demo3](./demo3.gif)
-\
-\
-\
 \
 ![demo4](./demo4.gif)
 
